@@ -15,5 +15,8 @@ func New() *echo.Echo {
 	// route transactions
 	e.GET("/transactions", controllers.GetTransactionController)
 
+	// route payments
+	e.GET("/payments", controllers.GetPaymentController)
+
 	return e
 }
