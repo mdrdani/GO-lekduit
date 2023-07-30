@@ -30,3 +30,22 @@ func AddUser(newUser models.User) (models.User, error) {
 	}
 	return newUser, nil
 }
+
+func UpdateUser(userID int, updatedUser models.User) (models.User, error) {
+	var user models.User
+
+	if e := config.DB.First(&user, userID).Error; e != nil {
+		return user, e
+	}
+
+	user.Nama = updatedUser.Nama
+	user.Email = updatedUser.Email
+	user.Alamat = updatedUser.Alamat
+	user.NoTelpon = updatedUser.NoTelpon
+
+	if e := config.DB.Save(&user).Error; e != nil {
+		return user, e
+	}
+
+	return user, nil
+}

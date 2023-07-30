@@ -54,3 +54,25 @@ func AddUserController(c echo.Context) error {
 		"user":   user,
 	})
 }
+
+func UpdateUserController(c echo.Context) error {
+	userID, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "Invalid User ID")
+	}
+
+	var updatedUser models.User
+	if err := c.Bind(&updatedUser); err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "Invalid Data")
+	}
+
+	user, err := database.UpdateUser(userID, updatedUser)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to Update User")
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"status": "success",
+		"user":   user,
+	})
+}
