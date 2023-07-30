@@ -14,3 +14,12 @@ func GetTransactions() (interface{}, error) {
 
 	return transactions, nil
 }
+
+func GetTransactionByID(transactionID int) (models.Transaction, error) {
+	var transaction models.Transaction
+
+	if e := config.DB.First(&transaction, transactionID).Error; e != nil {
+		return transaction, e
+	}
+	return transaction, nil
+}
