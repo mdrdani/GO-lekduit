@@ -15,9 +15,37 @@ func GetUserController(c echo.Context) error {
 	if e != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, e.Error)
 	}
+
+	// Create a custom JSON response structure
+	type UserResponse struct {
+		ID               uint   `json:"id"`
+		Nama             string `json:"nama"`
+		Email            string `json:"email"`
+		Alamat           string `json:"alamat"`
+		NoTelpon         string `json:"no_telpon"`
+		TransactionCount int    `json:"transaction_count"`
+	}
+
+	// Create a slice to hold the custom JSON response
+	var usersResponse []UserResponse
+
+	// Loop through each user to calculate the transaction count
+	for _, user := range users {
+		transactionCount := len(user.Transactions)
+		// Append the custom JSON response to the slice
+		usersResponse = append(usersResponse, UserResponse{
+			ID:               user.ID,
+			Nama:             user.Nama,
+			Email:            user.Email,
+			Alamat:           user.Alamat,
+			NoTelpon:         user.NoTelpon,
+			TransactionCount: transactionCount,
+		})
+	}
+
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"status": "success",
-		"users":  users,
+		"users":  usersResponse,
 	})
 }
 

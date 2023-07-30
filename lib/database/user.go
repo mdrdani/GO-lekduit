@@ -5,10 +5,10 @@ import (
 	"GO-lekduit/models"
 )
 
-func GetUsers() (interface{}, error) {
+func GetUsers() ([]models.User, error) {
 	var users []models.User
 
-	if e := config.DB.Find(&users).Error; e != nil {
+	if e := config.DB.Preload("Transactions").Find(&users).Error; e != nil {
 		return nil, e
 	}
 
