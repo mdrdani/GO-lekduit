@@ -23,6 +23,7 @@ func New() *echo.Echo {
 
 	// route payments
 	e.GET("/payments", controllers.GetPaymentController)
+	e.POST("/payments", controllers.AddPaymentsController)
 
 	return e
 }
