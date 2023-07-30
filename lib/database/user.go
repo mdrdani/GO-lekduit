@@ -49,3 +49,16 @@ func UpdateUser(userID int, updatedUser models.User) (models.User, error) {
 
 	return user, nil
 }
+
+func DeleteUser(userID int) error {
+	var user models.User
+	if e := config.DB.First(&user, userID).Error; e != nil {
+		return e
+	}
+
+	if e := config.DB.Delete(&user).Error; e != nil {
+		return e
+	}
+
+	return nil
+}

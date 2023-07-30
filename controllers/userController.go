@@ -72,7 +72,24 @@ func UpdateUserController(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"status": "success",
+		"status": "Success Data Update",
 		"user":   user,
+	})
+}
+
+func DeleteUserController(c echo.Context) error {
+	userID, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "Invalid User ID")
+	}
+
+	err = database.DeleteUser(userID)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to Delete User")
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"status":  "success",
+		"message": "user deleted successfully",
 	})
 }
