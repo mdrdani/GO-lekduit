@@ -11,6 +11,7 @@ func New() *echo.Echo {
 
 	// route Users
 	e.GET("/users", controllers.GetUserController)
+	e.GET("/users/:id", controllers.GetUserByIDController)
 
 	// route transactions
 	e.GET("/transactions", controllers.GetTransactionController)

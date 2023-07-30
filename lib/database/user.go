@@ -14,3 +14,12 @@ func GetUsers() (interface{}, error) {
 
 	return users, nil
 }
+
+func GetUserByID(userID int) (models.User, error) {
+	var user models.User
+
+	if e := config.DB.First(&user, userID).Error; e != nil {
+		return user, e
+	}
+	return user, nil
+}
