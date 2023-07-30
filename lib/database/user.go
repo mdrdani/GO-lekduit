@@ -18,7 +18,7 @@ func GetUsers() (interface{}, error) {
 func GetUserByID(userID int) (models.User, error) {
 	var user models.User
 
-	if e := config.DB.First(&user, userID).Error; e != nil {
+	if e := config.DB.Preload("Transactions").First(&user, userID).Error; e != nil {
 		return user, e
 	}
 	return user, nil
