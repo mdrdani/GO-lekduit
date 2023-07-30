@@ -23,3 +23,10 @@ func GetTransactionByID(transactionID int) (models.Transaction, error) {
 	}
 	return transaction, nil
 }
+
+func AddTransaction(newTransaction models.Transaction) (models.Transaction, error) {
+	if e := config.DB.Create(&newTransaction).Error; e != nil {
+		return newTransaction, e
+	}
+	return newTransaction, nil
+}
