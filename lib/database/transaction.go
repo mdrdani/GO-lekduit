@@ -30,3 +30,21 @@ func AddTransaction(newTransaction models.Transaction) (models.Transaction, erro
 	}
 	return newTransaction, nil
 }
+
+func UpdateTransaction(transactionID int, updatedTransaction models.Transaction) (models.Transaction, error) {
+	var transaction models.Transaction
+
+	if e := config.DB.First(&transaction, transactionID).Error; e != nil {
+		return transaction, e
+	}
+
+	transaction.Tanggal = updatedTransaction.Tanggal
+	transaction.Keterangan = updatedTransaction.Keterangan
+	transaction.UserID = updatedTransaction.UserID
+
+	if e := config.DB.Save(&transaction).Error; e != nil {
+		return transaction, e
+	}
+
+	return transaction, nil
+}

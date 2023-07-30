@@ -20,6 +20,7 @@ func New() *echo.Echo {
 	e.GET("/transactions", controllers.GetTransactionController)
 	e.GET("/transactions/:id", controllers.GetTransactionByIDController)
 	e.POST("/transactions", controllers.AddTransactionController)
+	e.PUT("/transactions/:id", controllers.UpdateTransactionController)
 
 	// route payments
 	e.GET("/payments", controllers.GetPaymentController)

@@ -55,3 +55,25 @@ func AddTransactionController(c echo.Context) error {
 		"transaction": transaction,
 	})
 }
+
+func UpdateTransactionController(c echo.Context) error {
+	transactionID, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "Invalid Transaction ID")
+	}
+
+	var updatedTransaction models.Transaction
+	if err := c.Bind(&updatedTransaction); err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "Invalid Transaction")
+	}
+
+	transaction, err := database.UpdateTransaction(transactionID, updatedTransaction)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "Failed to Update Transaction")
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"status":      "success",
+		"transaction": transaction,
+	})
+}
