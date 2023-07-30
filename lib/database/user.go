@@ -23,3 +23,10 @@ func GetUserByID(userID int) (models.User, error) {
 	}
 	return user, nil
 }
+
+func AddUser(newUser models.User) (models.User, error) {
+	if e := config.DB.Create(&newUser).Error; e != nil {
+		return newUser, e
+	}
+	return newUser, nil
+}
