@@ -19,4 +19,5 @@ type Transaction struct {
 	Tanggal    time.Time         `json:"tanggal" form:"tanggal"`
 	Keterangan TransactionStatus `json:"keterangan" form:"keterangan" gorm:"default:Waiting"`
 	UserID     uint              `json:"user_id" form:"user_id"`
+	Payment    Payment           `json:"payment" gorm:"foreignKey:TransactionID"`
 }
