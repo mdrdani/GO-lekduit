@@ -1,4 +1,5 @@
 # GO-lekduit
+
 <img align="center" alt="Golang" width="50%" src="https://github.com/mdrdani/GO-lekduit/assets/45899199/78c8ae34-5270-456b-8853-8c4bfdc4f4a8" />
 <br>
 
@@ -25,6 +26,7 @@ The GoLang Payment Project is a web application that allows users to manage thei
 - User Management: Create, Read, Update, and Delete users.
 - Transaction Management: Create, Read, Update user transactions.
 - Payment Management: Create and Read payments associated with transactions.
+- JWT Token Login and Logout.
 
 ## Requirements
 
@@ -44,3 +46,4 @@ git clone https://github.com/mdrdani/GO-lekduit.git
 cd GO-lekduit
 go mod download
 go run main.go
+```
