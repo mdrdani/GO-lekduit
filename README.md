@@ -1,5 +1,6 @@
 # GO-lekduit
 <img align="center" alt="Golang" width="50%" src="https://github.com/mdrdani/GO-lekduit/assets/45899199/78c8ae34-5270-456b-8853-8c4bfdc4f4a8" />
+<br>
 
 ![Go](https://img.shields.io/badge/Go-%3E%3D1.15-blue)
 ![Echo](https://img.shields.io/badge/Echo-%3E%3D4.0-green)
@@ -38,10 +39,8 @@ Once the application is running, you can access the API endpoints using a tool l
 
 ## Installation
 
-1. Clone the repository:
-
 ```bash
-git clone https://github.com/your-username/golang-payment.git
-cd golang-payment
+git clone https://github.com/mdrdani/GO-lekduit.git
+cd GO-lekduit
 go mod download
 go run main.go
