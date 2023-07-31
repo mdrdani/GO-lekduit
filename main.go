@@ -14,7 +14,7 @@ func main() {
 	// Inisialisasi user pertama kali
 	user := models.User{
 		Nama:     "Administrator",
-		Email:    "admin@golekduitcom",
+		Email:    "admin@golekduit.com",
 		Alamat:   "Everywhere",
 		NoTelpon: "123456789",
 		Password: "secret123",

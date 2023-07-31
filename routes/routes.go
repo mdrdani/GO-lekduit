@@ -18,11 +18,11 @@ func InitRoute(e *echo.Echo) *echo.Echo {
 	AuthRoute := e.Group("")
 	AuthRoute.Use(echojwt.JWT([]byte(os.Getenv("SECRET_KEY"))))
 	// route Users
-	e.GET("/users", controllers.GetUserController)
-	e.GET("/users/:id", controllers.GetUserByIDController)
-	e.POST("/users", controllers.AddUserController)
-	e.PUT("/users/:id", controllers.UpdateUserController)
-	e.DELETE("/users/:id", controllers.DeleteUserController)
+	AuthRoute.GET("/users", controllers.GetUserController)
+	AuthRoute.GET("/users/:id", controllers.GetUserByIDController)
+	AuthRoute.POST("/users", controllers.AddUserController)
+	AuthRoute.PUT("/users/:id", controllers.UpdateUserController)
+	AuthRoute.DELETE("/users/:id", controllers.DeleteUserController)
 
 	// route transactions
 	AuthRoute.GET("/transactions", controllers.GetTransactionController)
