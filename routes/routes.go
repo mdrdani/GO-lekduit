@@ -2,29 +2,37 @@ package routes
 
 import (
 	"GO-lekduit/controllers"
+	"os"
 
-	"github.com/labstack/echo"
+	echojwt "github.com/labstack/echo-jwt/v4"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
-func New() *echo.Echo {
-	e := echo.New()
+func InitRoute(e *echo.Echo) *echo.Echo {
+	e.Use(middleware.Logger())
 
+	// route login
+	e.POST("/login", controllers.LoginController)
+
+	AuthRoute := e.Group("")
+	AuthRoute.Use(echojwt.JWT([]byte(os.Getenv("SECRET_KEY"))))
 	// route Users
-	e.GET("/users", controllers.GetUserController)
-	e.GET("/users/:id", controllers.GetUserByIDController)
-	e.POST("/users", controllers.AddUserController)
-	e.PUT("/users/:id", controllers.UpdateUserController)
-	e.DELETE("/users/:id", controllers.DeleteUserController)
+	AuthRoute.GET("/users", controllers.GetUserController)
+	AuthRoute.GET("/users/:id", controllers.GetUserByIDController)
+	AuthRoute.POST("/users", controllers.AddUserController)
+	AuthRoute.PUT("/users/:id", controllers.UpdateUserController)
+	AuthRoute.DELETE("/users/:id", controllers.DeleteUserController)
 
 	// route transactions
-	e.GET("/transactions", controllers.GetTransactionController)
-	e.GET("/transactions/:id", controllers.GetTransactionByIDController)
-	e.POST("/transactions", controllers.AddTransactionController)
-	e.PUT("/transactions/:id", controllers.UpdateTransactionController)
+	AuthRoute.GET("/transactions", controllers.GetTransactionController)
+	AuthRoute.GET("/transactions/:id", controllers.GetTransactionByIDController)
+	AuthRoute.POST("/transactions", controllers.AddTransactionController)
+	AuthRoute.PUT("/transactions/:id", controllers.UpdateTransactionController)
 
 	// route payments
-	e.GET("/payments", controllers.GetPaymentController)
-	e.POST("/payments", controllers.AddPaymentsController)
+	AuthRoute.GET("/payments", controllers.GetPaymentController)
+	AuthRoute.POST("/payments", controllers.AddPaymentsController)
 
 	return e
 }
