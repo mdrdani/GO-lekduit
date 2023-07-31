@@ -26,7 +26,7 @@ The GoLang Payment Project is a web application that allows users to manage thei
 - User Management: Create, Read, Update, and Delete users.
 - Transaction Management: Create, Read, Update user transactions.
 - Payment Management: Create and Read payments associated with transactions.
-- JWT Token Login and Logout.
+- Auth with JSON Web Token (JWT)
 
 ## Requirements
 
