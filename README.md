@@ -7,8 +7,6 @@
 ![Echo](https://img.shields.io/badge/Echo-%3E%3D4.0-green)
 ![GORM](https://img.shields.io/badge/GORM-%3E%3D1.21-lightgrey)
 
-This is a GoLang Payment project that implements a simple web application for managing user transactions and payments.
-
 ## Table of Contents
 
 - [Introduction](#introduction)
