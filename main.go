@@ -4,6 +4,7 @@ import (
 	"GO-lekduit/config"
 	"GO-lekduit/models"
 	"GO-lekduit/routes"
+	"fmt"
 
 	"github.com/labstack/echo/v4"
 )
@@ -20,10 +21,19 @@ func main() {
 		Password: "secret123",
 	}
 
-	// Menyimpan user ke dalam database
-	result := config.DB.Create(&user)
+	// Cari pengguna dengan email yang sama di dalam tabel User
+	var existingUser models.User
+	result := config.DB.Where("email = ?", user.Email).First(&existingUser)
 	if result.Error != nil {
-		panic("Failed to create the first user")
+		// Jika tidak ada pengguna dengan email yang sama, maka simpan pengguna ke dalam tabel
+		result := config.DB.Create(&user)
+		if result.Error != nil {
+			panic("Failed to create the first user")
+		}
+	} else {
+		// Jika sudah ada pengguna dengan email yang sama, tidak perlu menyimpan data pengguna baru
+		// Anda bisa memberikan respons bahwa pengguna sudah ada, atau melakukan tindakan lain yang sesuai
+		fmt.Println("User with the same email already exists.")
 	}
 
 	e := echo.New()
