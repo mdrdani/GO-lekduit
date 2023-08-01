@@ -1,3 +1,7 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  logsBucket: golekduit
+
 steps:
   # Step 1: Checkout the source code from GitHub
   - name: "gcr.io/cloud-builders/git"
