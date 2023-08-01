@@ -8,12 +8,12 @@ steps:
 
   # Step 2: Build the container image using Docker
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/GOlekduit", "src"]
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/golekduit", "src"]
 
   # Step 3: Push the container image to Google Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/$PROJECT_ID/GOlekduit"]
+    args: ["push", "gcr.io/$PROJECT_ID/golekduit"]
 
 images:
   # Define the container image to be pushed to Artifact Registry
-  - "gcr.io/$PROJECT_ID/GOlekduit"
+  - "gcr.io/$PROJECT_ID/golekduit"
