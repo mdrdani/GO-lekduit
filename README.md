@@ -15,6 +15,7 @@
 - [Usage](#usage)
 - [Installation](#installation)
 - [Environments](#environments)
+- [Docker](#docker)
 
 ## Introduction
 
