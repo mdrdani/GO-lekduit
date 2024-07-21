@@ -14,6 +14,7 @@
 - [Requirements](#requirements)
 - [Usage](#usage)
 - [Installation](#installation)
+- [Environments](#environments)
 
 ## Introduction
 
@@ -44,4 +45,18 @@ git clone https://github.com/mdrdani/GO-lekduit.git
 cd GO-lekduit
 go mod download
 go run main.go
+```
+
+## Environments
+- DB_HOST=database-server
+- DB_PORT=5432
+- DB_USERNAME=postgres
+- DB_PASSWORD=postgres
+- DB_NAME=db_golekduit
+- SECRET_KEY=secret
+
+## Docker
+
+```bash
+docker compose up -d
 ```
