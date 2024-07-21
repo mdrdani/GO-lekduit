@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  golang:
+    image: cehamot/golek-duit:2
+    ports:
+      - '8080:8000'
+    environment:
+      - DB_HOST=database-server
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=db_golekduit
+      - SECRET_KEY=secret
+    networks:
+      - mynetwork
+    depends_on:
+      - database-server
+    restart: always
+
+  database-server:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db_golekduit
+    ports:
+      - '5433:5432'
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
